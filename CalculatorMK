@@ -1,0 +1,72 @@
+package Calculator;
+
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        theLogicOfTheCalculator();
+    }
+
+    private static void theLogicOfTheCalculator() {
+        System.out.println("Добро пожаловать в калькулятор \"Xenom\"!");
+        System.out.println();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            try {
+                System.out.print("Введите первое число или = для завершения программы: ");
+                if (scanner.hasNext("=")) {
+                    System.out.println("Спасибо за использование калькулятора");
+                    break;
+                }
+
+                double number1 = scanner.nextDouble();
+
+                System.out.print("Введите арифметическое действие(+, -, /, * или = для завершения программы): ");
+                String operation = scanner.next();
+                if (operation.equals("=")) {
+                    System.out.println("Спасибо за использование калькулятора!");
+                    break;
+                }
+
+                if (!operation.equals("+") && !operation.equals("-") && !operation.equals("/") && !operation.equals("*")) {
+                    System.out.println("Вы ввели не число или неверный знак действия. Допустимые знаки: +, -, /, *, =.");
+                    scanner.nextLine();
+                    continue;
+                }
+
+                System.out.print("Введите второе число или = для завершения программы: ");
+                if (scanner.hasNext("=")) {
+                    System.out.println("Спасибо за использование калькулятора!");
+                    break;
+                }
+
+                double number2 = scanner.nextDouble();
+
+                if (operation.equals("/") && number2 == 0) {
+                    System.out.println("Ошибка! На ноль делить нельзя!");
+                    continue;
+                }
+
+                switch (operation) {
+                    case "+":
+                        System.out.println("Результат: " + (number1 + number2));
+                        break;
+                    case "-":
+                        System.out.println("Результат: " + (number1 - number2));
+                        break;
+                    case "/":
+                        System.out.println("Результат: " + (number1 / number2));
+                        break;
+                    case "*":
+                        System.out.println("Результат: " + (number1 * number2));
+                        break;
+                }
+
+            } catch (Exception n) {
+                System.out.println("Ошибка! Вы ввели не число или неверный знак действия. Допустимые знаки: +, -, /, *, =.");
+                scanner.nextLine();
+            }
+        }
+    }
+}
